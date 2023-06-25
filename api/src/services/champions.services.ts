@@ -8,9 +8,19 @@ class ChampionsClass {
         this.collection = ChampionsModel;
     }
 
-    async getChampions() {}
+    async getChampions() {
+        const champions = await this.collection.find({});
+        if(champions.length === 0) return 'NO_CHAMPIONS'
+        return champions
+    }
 
-    async getUniqueChampion(id: string) {}
+    async getUniqueChampion(id: string) {
+        const champions = await this.collection.find({_id: id})
+        console.log(champions);
+        
+        if (champions === null) return 'NO_CHAMP'
+        return champions
+    }
 
     async postChampion(body: Champions) {}
 }
