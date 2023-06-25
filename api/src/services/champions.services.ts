@@ -12,7 +12,10 @@ class ChampionsClass {
 
     async getUniqueChampion(id: string) {}
 
-    async postChampion(body: Champions) {}
+    async postChampion(body: Champions) {        
+        const postChampion = await this.collection.create(body);
+        return postChampion;
+    }
 }
 
 const championsClass = new ChampionsClass();

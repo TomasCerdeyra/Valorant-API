@@ -21,13 +21,32 @@ const schema = new mongoose.Schema<Champions>(
       required: true,
       unique: true,
     },
-    habilities: [
-      {
+    habilities: {
+      hability1: {
         type: String,
         trim: true,
         required: true,
+        unique: true
       },
-    ],
+      hability2: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+      },
+      hability3: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+      },
+      hability4: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true
+      },
+    },
   },
   {
     timestamps: true,
