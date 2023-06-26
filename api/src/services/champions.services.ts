@@ -22,11 +22,18 @@ class ChampionsClass {
     }
 
     async getUniqueChampion(id: string) {
-        const champions = await this.collection.find({ _id: id })
-        console.log(champions);
-
+        const champions = await this.collection.findOne({_id: id}).select('-createdAt -updatedAt -_id');
         if (champions === null) return 'NO_CHAMP'
-        return champions
+        const { name, description, type, habilities } = champions;
+
+        const itemResponse = { 
+            name,
+            description, 
+            type,
+            habilities
+         }  
+
+        return itemResponse
     }
 
     async postChampion(body: Champions) {
