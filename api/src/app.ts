@@ -2,6 +2,7 @@ import express, { Request, Response } from "express";
 import "dotenv/config"
 import connectMongo from "./config/connectMongo.config";
 import routerChampions from "./routes/champions.routes";
+import routerMaps from "./routes/maps.routes";
 
 const app = express();
 
@@ -11,6 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 connectMongo()
 
 app.use('/', routerChampions)
+app.use('/maps', routerMaps)
 
 app.get('*', (req: Request, res: Response) => {
     res.status(404).json({ message: 'Ruta no válida' });
