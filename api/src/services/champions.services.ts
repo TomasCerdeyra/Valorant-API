@@ -1,6 +1,7 @@
 import { Model } from "mongoose";
 import Champions from "../interfaces/Champions.interface";
 import ChampionsModel from "../models/champions.model";
+import toCapitalize from "../utils/Capitalize";
 
 class ChampionsClass {
     collection: Model<Champions>
@@ -21,8 +22,8 @@ class ChampionsClass {
         return reorderedChampions;
     }
 
-    async getUniqueChampion(id: string) {
-        const champions = await this.collection.findOne({_id: id}).select('-createdAt -updatedAt -_id');
+    async getUniqueChampion(championName: string) {
+        const champions = await this.collection.findOne({ name: toCapitalize(championName)}).select('-createdAt -updatedAt -_id');
         if (champions === null) return 'NO_CHAMP'
         const { name, description, type, habilities } = champions;
 
@@ -39,7 +40,7 @@ class ChampionsClass {
     async postChampion(body: Champions) {
         const checkChampion = await this.collection.findOne({ name: body.name })
 
-        if (checkChampion) return "CHAMPION_ALREADY_EXISTS"
+        if (checkChampion) return "CHAMPION_ALREADY_EXISTS";
 
         const postChampion = await this.collection.create(body);
         return postChampion;

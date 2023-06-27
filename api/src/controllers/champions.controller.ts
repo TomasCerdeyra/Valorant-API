@@ -12,8 +12,6 @@ const getItems = async (req: Request, res: Response) => {
 }
 
 const getItem = async (req: Request, res: Response) => {
-    console.log(req.params.id);
-
     try {
         const item = await championsClass.getUniqueChampion(req.params.id);
 
@@ -34,7 +32,7 @@ const postItems = async (req: Request, res: Response) => {
 
         res.status(201).json({ 'NewChampion': postItems });
     } catch (error: any) {
-        res.status(500).json({ error: error._message });
+        res.status(500).json({ 'error': error._message });
         console.log(error);
     }
 }
