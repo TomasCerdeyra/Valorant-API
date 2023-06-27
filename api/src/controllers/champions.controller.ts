@@ -13,10 +13,10 @@ const getItems = async (req: Request, res: Response) => {
 
 const getItem = async (req: Request, res: Response) => {
     console.log(req.params.id);
-    
+
     try {
         const item = await championsClass.getUniqueChampion(req.params.id);
-        
+
         if (item === 'NO_CHAMP') return res.status(404).json({ 'message': 'Champion not found' })
 
         return res.json({ 'champion': item })
@@ -26,7 +26,7 @@ const getItem = async (req: Request, res: Response) => {
     }
 }
 
-const postItems = async (req: Request, res: Response) => {    
+const postItems = async (req: Request, res: Response) => {
     try {
         const postItems = await championsClass.postChampion(req.body);
 
@@ -34,9 +34,9 @@ const postItems = async (req: Request, res: Response) => {
 
         res.status(201).json({ 'NewChampion': postItems });
     } catch (error: any) {
-        res.status(500).json({ error: error._message });   
+        res.status(500).json({ error: error._message });
         console.log(error);
     }
 }
 
-export { getItems,getItem, postItems };
+export { getItems, getItem, postItems };
