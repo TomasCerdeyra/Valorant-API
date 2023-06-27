@@ -37,6 +37,10 @@ class ChampionsClass {
     }
 
     async postChampion(body: Champions) {
+        const checkChampion = await this.collection.findOne({ name: body.name })
+
+        if (checkChampion) return "CHAMPION_ALREADY_EXISTS"
+
         const postChampion = await this.collection.create(body);
         return postChampion;
     }

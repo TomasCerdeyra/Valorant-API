@@ -19,7 +19,6 @@ const schema = new mongoose.Schema<Champions>(
       type: String,
       trim: true,
       required: true,
-      unique: true,
     },
     habilities: {
       hability1: {

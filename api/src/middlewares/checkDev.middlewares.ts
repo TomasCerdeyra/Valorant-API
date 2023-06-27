@@ -5,7 +5,7 @@ const checkDev = (req: Request, res: Response, next: NextFunction) => {
     const header = req.headers['dev_key']
 
     if (header === process.env.DEV_KEY) return next()
-    else return res.status(501).json({ message: 'Access denied' });
+    else return res.status(403).json({ message: 'Access denied' });
 }
 
 export default checkDev;

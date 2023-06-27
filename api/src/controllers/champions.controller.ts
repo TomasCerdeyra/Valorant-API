@@ -29,6 +29,9 @@ const getItem = async (req: Request, res: Response) => {
 const postItems = async (req: Request, res: Response) => {    
     try {
         const postItems = await championsClass.postChampion(req.body);
+
+        if (postItems === 'CHAMPION_ALREADY_EXISTS') return res.status(400).json({ message: 'Champion already exists' });
+
         res.status(201).json({ 'NewChampion': postItems });
     } catch (error: any) {
         res.status(500).json({ error: error._message });   
