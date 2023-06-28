@@ -9,6 +9,11 @@ class ChampionsClass {
         this.collection = ChampionsModel;
     }
 
+    /**
+     * 
+     * @returns { Response }
+     */
+
     async getChampions() {
         const champions = await this.collection.find({}).select('-createdAt -updatedAt -_id');
 
@@ -22,6 +27,10 @@ class ChampionsClass {
         return reorderedChampions;
     }
 
+    /**
+     * @param championName -> string
+     * @returns { Response } 
+     */
     async getUniqueChampion(championName: string) {
         const champions = await this.collection.findOne({ name: toCapitalize(championName)}).select('-createdAt -updatedAt -_id');
         if (champions === null) return 'NO_CHAMP'
@@ -37,6 +46,35 @@ class ChampionsClass {
         return itemResponse
     }
 
+    /**
+     * 
+     * @param agentType -> string
+     * @returns { Response }
+     */
+    async getChampionsByType(agentType: string) {
+        // toCapitalize -> Agrega mayuscula a la primera letra
+        const getChampions = await this.collection.find({ type: toCapitalize(agentType) });
+
+        if (getChampions.length === 0) return "NOT_FOUND";
+        
+        // TODO: Ordena objeto de champion
+        const finalResponse = getChampions.map(item => {
+            const { name, description, type, habilities } = item;
+            return {
+                name,
+                description, 
+                type,
+                habilities
+            }
+        });
+
+        return finalResponse;
+    }
+
+    /**
+     * @param body -> Champions (Interface) 
+     * @returns { Response }
+     */
     async postChampion(body: Champions) {
         const checkChampion = await this.collection.findOne({ name: body.name })
 

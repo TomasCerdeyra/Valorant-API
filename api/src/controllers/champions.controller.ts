@@ -11,6 +11,18 @@ const getItems = async (req: Request, res: Response) => {
     }
 }
 
+const getItemsByType = async (req: Request, res: Response) => {
+    try {
+        const items = await championsClass.getChampionsByType(req.params.agentType);
+
+        if (items === 'NOT_FOUND') return res.status(404).json({ message: 'Agent type not found' })
+
+        res.json({ champions: items })
+    } catch (error: any) {
+        res.status(500).json({ 'error': error._message });
+    }
+}
+
 const getItem = async (req: Request, res: Response) => {
     try {
         const item = await championsClass.getUniqueChampion(req.params.id);
@@ -36,4 +48,4 @@ const postItems = async (req: Request, res: Response) => {
     }
 }
 
-export { getItems, getItem, postItems };
+export { getItems, getItem, getItemsByType, postItems };
