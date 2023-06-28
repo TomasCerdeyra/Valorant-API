@@ -4,11 +4,13 @@ import connectMongo from "./config/connectMongo.config";
 import routerChampions from "./routes/champions.routes";
 import routerMaps from "./routes/maps.routes";
 import routerWeapons from "./routes/weapons.routes"
+import cors from "cors";
 
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
 
 connectMongo()
 
