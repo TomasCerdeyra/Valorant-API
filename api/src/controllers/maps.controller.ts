@@ -26,6 +26,7 @@ const getItem = async (req: Request, res: Response) => {
 const postItems = async (req: Request, res: Response) => {    
     try {
         const postItems = await mapsClass.postMap(req.body);
+
         return res.status(201).json({ 'NewMap': postItems });
     } catch (error: any) {
         res.status(500).json({ error: error._message });   

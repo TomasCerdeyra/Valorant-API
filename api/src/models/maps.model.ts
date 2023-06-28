@@ -40,6 +40,12 @@ const schema = new mongoose.Schema<Maps>(
                 required: true,
                 unique: true
             },
+            photo5: {
+                type: String,
+                trim: true,
+                required: true,
+                unique: true
+            },
         },
     },
     {

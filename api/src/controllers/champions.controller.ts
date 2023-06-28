@@ -33,7 +33,6 @@ const postItems = async (req: Request, res: Response) => {
         res.status(201).json({ 'NewChampion': postItems });
     } catch (error: any) {
         res.status(500).json({ 'error': error._message });
-        console.log(error);
     }
 }
 

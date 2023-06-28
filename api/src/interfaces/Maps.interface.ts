@@ -6,6 +6,7 @@ interface Maps {
         photo2: string;
         photo3: string;
         photo4: string;
+        photo5: string
     };
 }
 
