@@ -8,11 +8,16 @@ const schema = new mongoose.Schema<Weapons>({
         required: true,
         unique: true
     },
+    description: {
+        type: String,
+        trim: true,
+        required: true,
+        unique: true,
+    },
     type: {
         type: String,
         trim: true,
         required: true,
-        unique: true
     },
     photo: {
         type: String,

@@ -1,6 +1,7 @@
 interface Weapons {
     name: string,
-    type: 'smgs' | 'siderarms' | 'shoutguns' | 'rifles' | 'snipers' | 'havies' | 'melee',
+    description: string;
+    type: 'smgs' | 'sidearms' | 'shoutguns' | 'rifles' | 'snipers' | 'heavies' | 'melee',
     photo: string
 }
 
